@@ -91,6 +91,7 @@ figcaption {
     position: absolute;
     top: 20%;
     height: 80%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.62);
 
     transform: translateY(120%);
