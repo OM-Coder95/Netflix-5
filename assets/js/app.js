@@ -11,6 +11,8 @@ const movieName = document.getElementById("movieName");
 const movieImage = document.getElementById("movieImage");
 const movieDescription = document.getElementById("movieDescription");
 const movieRating = document.getElementById("movieRating");
+const submitBtn = document.getElementById("submitBtn");
+const updateBtn = document.getElementById("updateBtn");
 
 // DataBase
 
@@ -73,7 +75,7 @@ function showOnUI(arr) {
                     </div>
                 
                     <div class="card-footer d-flex justify-content-between">
-                        <button class="btn btn-sm net-pri-btn">Edit</button>
+                        <button onclick="editMovie(this)" class="btn btn-sm net-pri-btn">Edit</button>
                         <button class="btn btn-sm net-sec-btn">Remove</button>
                     </div>
                 </div>
@@ -136,12 +138,29 @@ function onMovieAdd(event) {
                     </div>
                 
                     <div class="card-footer d-flex justify-content-between">
-                        <button class="btn btn-sm net-pri-btn">Edit</button>
+                        <button onclick="editMovie(this)" class="btn btn-sm net-pri-btn">Edit</button>
                         <button class="btn btn-sm net-sec-btn">Remove</button>
                     </div>
                 </div>
   `;
   movieContainer.prepend(div);
+}
+
+// edit
+
+function editMovie(ele) {
+  let editId = ele.closest(".movieCard").id;
+  onAddMovieBtnClick();
+
+  let editObj = movieArr.find((ele) => String(ele.id) === String(editId));
+
+  movieName.value = editObj.original_title;
+  movieImage.value = editObj.poster_path;
+  movieDescription.value = editObj.overview;
+  movieRating.value = editObj.vote_average;
+
+  submitBtn.classList.add("d-none");
+  updateBtn.classList.remove("d-none");
 }
 
 toggleBtn.addEventListener("click", onAddMovieBtnClick);
